@@ -1,0 +1,352 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM Template for Lambda Functions with API Gateway
+
+Globals:
+  Api:
+    Cors:
+      AllowMethods: "'GET,POST,OPTIONS'"
+      AllowHeaders: "'Content-Type,Authorization'"
+      AllowOrigin: "'*'"
+
+Resources:
+  # First Lambda Function for / POST request
+  RootFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/home.handler  # Path to your handler
+      Runtime: nodejs18.x               # Update to your desired runtime
+      MemorySize: 128
+      Timeout: 10
+      CodeUri: .                        # Directory containing your Lambda code
+      Environment:                      # Add environment variables
+        Variables:
+          NODE_ENV: production
+          MONGO_URI: mongodb+srv://username:password@cluster0.mongodb.net/dbname?retryWrites=true&w=majority
+          S3_BUCKET_NAME: assets.folex.com
+          USERInfo: https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/oauth2/userInfo
+          PORT: '5000'
+      Policies:                         # Add policies here instead of Role
+        - AWSLambdaBasicExecutionRole   # Basic execution policy for Lambda
+        - Statement:
+            Effect: Allow
+            Action:
+              - s3:PutObject
+              - s3:GetObject
+            Resource: arn:aws:s3:::bucket.folex.1/*
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:*
+            Resource: "*"
+
+      Events:
+        RootPost:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApiGateway
+            Path: /
+            Method: post
+
+  # Second Lambda Function for /addEvent POST request
+  AddEventFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/addEvent.handler  # Path to your handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      CodeUri: .
+      Environment:
+        Variables:
+          NODE_ENV: production
+          MONGO_URI: mongodb+srv://username:password@cluster0.mongodb.net/dbname?retryWrites=true&w=majority
+          S3_BUCKET_NAME: assets.folex.com
+          UserInfo: https://folexauth.auth.ap-south-1.amazoncognito.com/oauth2/userInfo
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - s3:PutObject
+              - s3:GetObject
+            Resource: arn:aws:s3:::bucket.folex.1/*
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:*
+            Resource: "*"
+
+      Events:
+        AddEventPost:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApiGateway
+            Path: /addEvent
+            Method: post
+
+  # Third Lambda Function for checking user existence with /checkUser POST request
+  CheckUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/checkUser.handler  # Path to your checkUser.js handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      CodeUri: .                       # Directory containing your Lambda code
+      Environment:
+        Variables:
+          NODE_ENV: production
+          USER_INFO_URL: https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/oauth2/userInfo
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:GetItem
+            Resource: "*"
+
+      Events:
+        CheckUserPost:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApiGateway
+            Path: /checkUser
+            Method: post
+
+  #  Lambda Function for getting events with /getEvents POST request
+  GetEventsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/getEvents.handler  # Path to your getEvents.js handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      CodeUri: .                       # Directory containing your Lambda code
+      Environment:
+        Variables:
+          NODE_ENV: production
+          USER_INFO_URL: hhttps://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/oauth2/userInfo
+          TABLE_NAME: Users            # DynamoDB table name for querying
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:Query
+            Resource: "*"
+
+      Events:
+        GetEventsPost:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApiGateway
+            Path: /getEvents
+            Method: post
+
+
+  #  Lambda Function for deleting an event with /deleteEvent POST request
+  DeleteEventFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/deleteEvent.handler  # Path to your deleteEvent.js handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      CodeUri: .                       # Directory containing your Lambda code
+      Environment:
+        Variables:
+          NODE_ENV: production
+          USER_INFO_URL: https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/oauth2/userInfo
+          TABLE_NAME: Users            # DynamoDB table name for querying and updating
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:UpdateItem
+            Resource: "*"
+
+      Events:
+        DeleteEventPost:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApiGateway
+            Path: /deleteEvent
+            Method: post
+
+  # Lambda Function for editing an event with /editEvent POST request
+  EditEventFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/editEvent.handler  # Path to your handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      CodeUri: .                       # Directory containing your Lambda code
+      Environment:
+        Variables:
+          NODE_ENV: production
+          USER_INFO_URL: https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/oauth2/userInfo
+          TABLE_NAME: Users            # DynamoDB table name for querying and updating
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:UpdateItem
+            Resource: "*"
+
+      Events:
+        EditEventPost:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApiGateway
+            Path: /editEvent
+            Method: post
+
+        # Lambda Function for unsubscribe with /unsubscribe GET request
+  UnsubscribeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/unSubscribe.handler  # Path to your unsubscribe.js handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      CodeUri: .                       # Directory containing your Lambda code
+      Environment:
+        Variables:
+          NODE_ENV: production
+          USER_INFO_URL: https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/oauth2/userInfo
+          TABLE_NAME: Users            # DynamoDB table name for querying and updating
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:UpdateItem
+            Resource: "*"
+
+      Events:
+        UnsubscribeGet:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApiGateway
+            Path: /unsubscribe/{token}
+            Method: get
+
+
+
+          # Lambda Function for checking the subscription status with /checkStatus POST request
+  CheckStatusFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/checkStatus.handler  # Path to your checkStatus.js handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      CodeUri: .                       # Directory containing your Lambda code
+      Environment:
+        Variables:
+          NODE_ENV: production
+          USER_INFO_URL: https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/oauth2/userInfo
+          TABLE_NAME: Users            # DynamoDB table name for querying the subscription status
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:GetItem
+            Resource: "*"
+
+      Events:
+        CheckStatusPost:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApiGateway
+            Path: /checkStatus
+            Method: post
+
+  SnoozeEventFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/snoozeEvent.handler  # Path to your snoozeEvent.js handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      CodeUri: .                        # Directory containing your Lambda code
+      Environment:
+        Variables:
+          NODE_ENV: production
+          USER_INFO_URL: https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/oauth2/userInfo
+          TABLE_NAME: Users            # DynamoDB table name for querying and updating
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - dynamodb:GetItem
+              - dynamodb:UpdateItem
+            Resource: "*"
+
+      Events:
+        SnoozeEventGet:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApiGateway
+            Path: /snoozeEvent
+            Method: get
+
+  # Adding the new Lambda function for the /getUrl POST request
+
+  GetUrlFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/getUrl.handler  # Path to your getUrl.js handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      CodeUri: .                       # Directory containing your Lambda code
+      Environment:
+        Variables:
+          NODE_ENV: production
+          S3_BUCKET_NAME: assets.folex.com  # S3 bucket for pre-signed URLs
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            Effect: Allow
+            Action:
+              - s3:GetObject
+              - s3:PutObject
+            Resource: arn:aws:s3:::assets.folex.com/*  # Adjust if needed
+
+      Events:
+        GetUrlPost:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApiGateway
+            Path: /getUrl
+            Method: post
+
+
+
+
+
+
+  # API Gateway Resource
+  MyApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: MyApiGateway
+      StageName: folex-backend   # Ensure this name is consistent throughout
+      EndpointConfiguration: REGIONAL
+
+# Uncomment if you want to output the API URL
+# Outputs:
+#   ApiUrl:
+#     Description: "API Gateway endpoint URL"
+#     Value: !Sub "https://${MyApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${StageName}"

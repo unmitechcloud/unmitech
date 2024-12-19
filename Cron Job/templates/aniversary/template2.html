@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anniversary Celebration</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #fff0f5;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      animation: slideIn 1.2s ease-out;
+    }
+    .header {
+      background-image: url('https://cdn.pixabay.com/photo/2017/08/30/07/56/flowers-2691633_1280.jpg');
+      background-size: cover;
+      padding: 40px;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    .header h1 {
+      font-size: 32px;
+      margin: 0;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    .header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    .header h1 {
+      position: relative;
+      z-index: 2;
+    }
+    p {
+      font-size: 16px;
+      color: #444;
+      padding: 20px;
+      text-align: center;
+    }
+    .cta {
+      text-align: center;
+      margin: 20px;
+    }
+    .cta a {
+      text-decoration: none;
+      background-color: #f06292;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .cta a:hover {
+      background-color: #ec407a;
+    }
+    @keyframes slideIn {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>💐 Anniversary Celebration!</h1>
+    </div>
+    <p>Let’s celebrate the beautiful journey of <strong>{eventName}</strong>. 🌸✨</p>
+    <p>We invite you to join us in honoring this special day filled with love, memories, and laughter on {{eventDate}}.</p>
+    <p>Message: {{message}}</p>
+    <div class="image-container">
+      <img src="{{link}}" alt="image here">
+    </div>
+    <div class="cta">
+      <a href="#">Celebrate with Us</a>
+    </div>
+  </div>
+</body>
+</html>

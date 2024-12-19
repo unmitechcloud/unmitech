@@ -1,0 +1,11 @@
+version = 0.1
+
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "folex"
+s3_bucket = "bucket.folex.1"
+s3_prefix = "deployments"  # Optional: can be left empty if not used
+region = "ap-south-1"
+confirm_changeset = true
+capabilities = ["CAPABILITY_IAM"]

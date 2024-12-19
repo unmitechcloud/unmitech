@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deadline Alert</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f3f3f3;
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      animation: slideIn 1s ease-out;
+    }
+    .header {
+      background-color: #ff6b6b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    p {
+      font-size: 16px;
+      color: #444;
+      margin: 15px;
+    }
+    .details {
+      background-color: #ffe9e9;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 15px;
+    }
+    .cta {
+      text-align: center;
+      margin: 20px;
+    }
+    .cta a {
+      text-decoration: none;
+      background-color: #ff6b6b;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .cta a:hover {
+      background-color: #e63946;
+    }
+    .unsubscribe {
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      margin: 20px;
+    }
+    .unsubscribe a {
+      color: #ff6b6b;
+      text-decoration: none;
+    }
+    @keyframes slideIn {
+      from {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>⏳ Deadline Approaching!</h1>
+    </div>
+
+    <p>Dear <strong>{{userName}}</strong>,</p>
+    <p>Please be informed that the deadline for the following event is fast approaching.</p>
+
+    <div class="details">
+      <p><strong>Event Name:</strong> {{eventName}}</p>
+    </div>
+
+    <p>Ensure you complete your task before the deadline to avoid any issues.</p>
+
+
+    <div class="unsubscribe">
+      <p>If you no longer wish to receive these notifications, click <a href="{{unsubscribeLink}}">here</a> to unsubscribe : {{unsubscribeLink}} .</p>
+    </div>
+  </div>
+</body>
+</html>

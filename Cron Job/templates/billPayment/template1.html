@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill Payment Reminder</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      animation: slideDown 1.2s ease-out;
+    }
+    .header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+    p {
+      font-size: 16px;
+      color: #555;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    .bill-details {
+      background-color: #e8f4fd;
+      padding: 15px;
+      margin: 15px;
+      border-radius: 5px;
+    }
+    .cta {
+      text-align: center;
+      margin: 20px;
+    }
+    .cta a {
+      text-decoration: none;
+      background-color: #007bff;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .cta a:hover {
+      background-color: #0056b3;
+    }
+    .unsubscribe {
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      margin: 20px 0;
+    }
+    .unsubscribe a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    @keyframes slideDown {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🧾 Bill Payment Reminder</h1>
+    </div>
+    <p>Dear <strong>{{username}}</strong>,</p>
+    <p>Your bill is due. Please make the payment to avoid any late fees.</p>
+
+    <div class="bill-details">
+      <p><strong>Event Name:</strong> {{eventName}}</p>
+    </div>
+
+    <div class="cta">
+      <a href="{{paymentLink}}">Pay Now</a>
+    </div>
+
+    <div class="unsubscribe">
+      <p>If you wish to unsubscribe from these emails, click <a href="{{unsubscribeLink}}">here :{{unsubscribeLink}}</a>.</p>
+    </div>
+  </div>
+</body>
+</html>
