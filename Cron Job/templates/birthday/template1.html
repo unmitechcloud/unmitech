@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Celebration</title>
+  <style>
+    body {
+      margin: 0; padding: 0; font-family: 'Arial', sans-serif; background-color: #f5f7fa;
+    }
+    .container {
+      width: 100%; max-width: 600px; margin: auto; background-color: white; 
+      border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden;
+      animation: slideIn 1.5s ease-out;
+    }
+    .header {
+      background-color: #ffcccb; padding: 20px; text-align: center;
+    }
+    .header img {
+      width: 100px; height: auto;
+    }
+    h1 {
+      color: #ff6363; font-size: 28px; margin: 10px 0;
+    }
+    p {
+      font-size: 16px; color: #555; padding: 0 20px; text-align: center;
+    }
+    .cta {
+      margin: 20px; text-align: center;
+    }
+    .cta a {
+      text-decoration: none; padding: 12px 24px; background-color: #ff6363;
+      color: white; border-radius: 5px; font-weight: bold; 
+      transition: background-color 0.3s ease;
+    }
+    .cta a:hover {
+      background-color: #ff8585;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .button {
+      display: inline-block; padding: 12px 24px; background-color: #ff6363;
+      color: white; border: none; border-radius: 5px; font-weight: bold;
+      cursor: pointer; transition: background-color 0.3s ease;
+    }
+    .button:hover {
+      background-color: #ff8585;
+    }
+    .image-container {
+      padding: 10px;
+      text-align: center;
+    }
+    .image-container img {
+      max-width: 100%; /* Ensures the image fits within the container's width */
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://cdn-icons-png.flaticon.com/512/4147/4147573.png" alt="Birthday balloons">
+      <h1>🎂 Birthday Celebration alert!</h1>
+    </div>
+    <p>Hey <strong>{{userName}}</strong>, you have an alert for a birthday🎉.</p>
+    <p><strong>Event Name:</strong> {{eventName}}!</p>
+    <p><strong>Event Date:</strong> {{eventDate}}!</p>
+    <p>Message: {{message}}</p>
+    <div class="image-container">
+      <img src="{{link}}" alt="image here">
+    </div>
+    <div class="cta">
+      <a href="https://9bkcvd275k.execute-api.ap-south-1.amazonaws.com/Stage/snoozeEvent/?token={{token}}">
+        Snooze Event
+      </a>
+    </div>
+    <p>Click <a href="{{unsubscribeLink}}">here</a> to unsubscribe: {{unsubscribeLink}}.</p>
+  </div>
+
+  <script>
+    async function snoozeEvent() {
+      const token = "{{token}}"; // Replace this dynamically in production
+      const snoozeUrl = `https://9bkcvd275k.execute-api.ap-south-1.amazonaws.com/Stage/snoozeEvent/?token=${token}`;
+
+      try {
+        const response = await fetch(snoozeUrl, {
+          method: 'GET'
+        });
+
+        if (response.ok) {
+          alert("Event snoozed successfully!");
+        } else {
+          alert("Failed to snooze the event. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while trying to snooze the event.");
+      }
+    }
+  </script>
+</body>
+</html>

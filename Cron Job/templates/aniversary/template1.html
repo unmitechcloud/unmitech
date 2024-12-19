@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anniversary Celebration</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background-color: #faf9f6;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1.5s ease-out;
+    }
+    .header {
+      background-color: #d4af37;
+      padding: 30px;
+      text-align: center;
+      color: white;
+    }
+    .header img {
+      width: 80px;
+      height: auto;
+    }
+    h1 {
+      margin: 15px 0;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+    p {
+      font-size: 16px;
+      color: #444;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .cta {
+      text-align: center;
+      margin: 20px;
+    }
+    .cta a {
+      text-decoration: none;
+      background-color: #d4af37;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .cta a:hover {
+      background-color: #b8902b;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://cdn-icons-png.flaticon.com/512/3534/3534063.png" alt="Anniversary Rings">
+      <h1>🎊 Happy Anniversary!</h1>
+    </div>
+    <p>Dear <strong>{{userName}}</strong>, it's time to celebrate a special milestone! 🎉</p>
+    <p>Join us in marking the anniversary of <strong>{{eventName}}</strong> on {{eventDate}} and relive beautiful memories.</p>
+    <p>Message: {{message}}</p>
+    <div class="image-container">
+      <img src="{{link}}" alt="image here">
+    </div>
+    
+    <p style="text-align: center; margin: 20px 0;">
+      If you wish to unsubscribe from these notifications, click <a href="{{unsubscribeLink}}">here : {{unsubscribeLink}} </a>.
+    </p>
+  </div>
+</body>
+</html>
