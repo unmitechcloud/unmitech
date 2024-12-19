@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bill Payment Notification</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Verdana', sans-serif;
+      background-color: #eef2f3;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      animation: fadeIn 1s ease-out;
+    }
+    .header {
+      background-color: #4caf50;
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    .header img {
+      width: 50px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+    .content {
+      padding: 15px 25px;
+      text-align: left;
+      color: #333;
+    }
+    .content p {
+      font-size: 16px;
+      margin: 8px 0;
+    }
+    .bill-summary {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-weight: bold;
+    }
+    .cta {
+      text-align: center;
+      margin: 20px;
+    }
+    .cta a {
+      text-decoration: none;
+      background-color: #4caf50;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .cta a:hover {
+      background-color: #388e3c;
+    }
+    .unsubscribe {
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      margin: 20px;
+    }
+    .unsubscribe a {
+      color: #4caf50;
+      text-decoration: none;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://cdn-icons-png.flaticon.com/512/2917/2917999.png" alt="Payment Icon">
+      <h1>Bill Payment Notification</h1>
+    </div>
+
+    <div class="content">
+      <p>Hello <strong>{{userName}}</strong>,</p>
+      <p>We would like to inform you that your payment for the following bill is due soon:</p>
+
+      <div class="bill-summary">
+        <p><strong>Event Name:</strong> {{eventName}}</p>
+      </div>
+
+      <p>To avoid service disruption, please complete the payment by the due date.</p>
+    </div>
+
+   
+
+    <div class="unsubscribe">
+      <p>If you wish to unsubscribe from these notifications, click <a href="{{unsubscribeLink}}">here</a>.</p>
+    </div>
+  </div>
+</body>
+</html>
