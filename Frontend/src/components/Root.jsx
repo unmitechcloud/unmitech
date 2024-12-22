@@ -70,7 +70,7 @@ function Home() {
         // Check if the response contains "exists": true
         if (data.exists === true) {
           // Redirect to /addEvent if "exists" is true
-          navigate('/home');
+          navigate('/addEvent');
         } else {
           // Redirect to /addInfo if "exists" is false
           navigate('/userRegistration');
