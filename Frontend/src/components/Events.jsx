@@ -131,6 +131,13 @@ export const Events = () => {
     }
   }, [navigate]);
 
+  useEffect(()=>{
+    
+      fetchEvents();
+      
+    }
+  ,[]);
+
   return (
     <div className="min-h-screen bg-sky-950 pb-4">
       <Navbar title1="Home" title2="Add Events" title3="SignOut" link1="/home" link2="/addEvent" />
