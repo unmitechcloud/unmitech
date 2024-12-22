@@ -5,7 +5,7 @@ const dynamoDB = new AWS.DynamoDB.DocumentClient({ region: 'ap-south-1' });
 const userInfoUrl = 'https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/oauth2/userInfo';
 
 export const handler = async (event) => {
-  const { accessToken, eventIndex, eventName, eventDate, category, subCategory } = JSON.parse(event.body);
+  const { accessToken, eventIndex, eventName, eventDate, category, subCategory ,message} = JSON.parse(event.body);
 
   // Define common headers
   const commonHeaders = {
@@ -105,7 +105,7 @@ export const handler = async (event) => {
     }
 
     // Update the specific event at the given index
-    events[eventIndex] = { eventName, eventDate, category, subCategory };
+    events[eventIndex] = { eventName, eventDate, category, subCategory,message };
 
     // Define the update parameters for DynamoDB
     const updateParams = {
