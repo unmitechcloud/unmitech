@@ -445,6 +445,7 @@ function AddEvent() {
                   className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
                 >
                   <option value="">Select Recurrence</option>
+                  <option value="Daily">Daily</option>
                   <option value="Weekly">Weekly</option>
                   <option value="Monthly">Monthly</option>
                   <option value="Yearly">Yearly</option>
