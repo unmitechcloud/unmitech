@@ -29,18 +29,22 @@ const clearCookies = () => {
       <div className='container mx-auto px-6 py-4 flex justify-between items-center'>
         {/* Left side - Divs with onClick event */}
         <div className='flex gap-8'>
-          <div
-            className='text-white font-semibold hover:bg-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-md cursor-pointer'
-            onClick={() => { navigate(props.link1); }}
-          >
-            {props.title1}
-          </div>
-          <div
-            className='text-white font-semibold hover:bg-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-md cursor-pointer'
-            onClick={() => { navigate(props.link2); }}
-          >
-            {props.title2}
-          </div>
+          {props.title1 && props.link1 && (
+            <div
+              className='text-white font-semibold hover:bg-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-md cursor-pointer'
+              onClick={() => { navigate(props.link1); }}
+            >
+              {props.title1}
+            </div>
+          )}
+          {props.title2 && props.link2 && (
+            <div
+              className='text-white font-semibold hover:bg-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-md cursor-pointer'
+              onClick={() => { navigate(props.link2); }}
+            >
+              {props.title2}
+            </div>
+          )}
         </div>
 
         {/* Right side - Signout as div with onClick */}

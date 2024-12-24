@@ -95,9 +95,9 @@ const Navbar = () => {
               <div onClick={()=>{if(accessToken){navigate('/home')} else {window.location.href = 'https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/login?client_id=av59njgd1tg642br5121i5i52&redirect_uri=https%3A%2F%2Fdn9ynng7833dp.cloudfront.net%2Floading&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile'}}} className="text-gray-700 hover:text-purple-600 transition-colors">
                 Home
               </div>
-              <div onClick={()=>{if(accessToken){navigate('/manageEvents')} else {window.location.href = 'https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/login?client_id=av59njgd1tg642br5121i5i52&redirect_uri=https%3A%2F%2Fdn9ynng7833dp.cloudfront.net%2Floading&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile'}}}  className="text-gray-700 hover:text-purple-600 transition-colors">
+              {/* <div onClick={()=>{if(accessToken){navigate('/manageEvents')} else {window.location.href = 'https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/login?client_id=av59njgd1tg642br5121i5i52&redirect_uri=https%3A%2F%2Fdn9ynng7833dp.cloudfront.net%2Floading&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile'}}}  className="text-gray-700 hover:text-purple-600 transition-colors">
                 Dashboard
-              </div>
+              </div> */}
               <div onClick={()=>{if(accessToken){navigate('/addEvent')} else {window.location.href = 'https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/login?client_id=av59njgd1tg642br5121i5i52&redirect_uri=https%3A%2F%2Fdn9ynng7833dp.cloudfront.net%2Floading&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile'}}} className="text-gray-700 hover:text-purple-600 transition-colors">
                 Create Event
               </div>
@@ -130,9 +130,9 @@ const Navbar = () => {
               <a  onClick={()=>{if(accessToken){navigate('/home')} else {window.location.href = 'https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/login?client_id=av59njgd1tg642br5121i5i52&redirect_uri=https%3A%2F%2Fdn9ynng7833dp.cloudfront.net%2Floading&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile'}}} className="block text-gray-700 hover:text-purple-600 transition-colors">
                 Home
               </a>
-              <a  onClick={()=>{if(accessToken){navigate('/manageEvents')} else {window.location.href = 'https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/login?client_id=av59njgd1tg642br5121i5i52&redirect_uri=https%3A%2F%2Fdn9ynng7833dp.cloudfront.net%2Floading&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile'}}} className="block text-gray-700 hover:text-purple-600 transition-colors">
+              {/* <a  onClick={()=>{if(accessToken){navigate('/manageEvents')} else {window.location.href = 'https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/login?client_id=av59njgd1tg642br5121i5i52&redirect_uri=https%3A%2F%2Fdn9ynng7833dp.cloudfront.net%2Floading&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile'}}} className="block text-gray-700 hover:text-purple-600 transition-colors">
                 Dashboard
-              </a>
+              </a> */}
               <a  onClick={()=>{if(accessToken){navigate('/addEvent')} else {window.location.href = 'https://ap-south-16fmyuvsz0.auth.ap-south-1.amazoncognito.com/login?client_id=av59njgd1tg642br5121i5i52&redirect_uri=https%3A%2F%2Fdn9ynng7833dp.cloudfront.net%2Floading&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile'}}} className="block text-gray-700 hover:text-purple-600 transition-colors">
                 Create Event
               </a>

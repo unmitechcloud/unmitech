@@ -70,7 +70,7 @@ function Home() {
         // Check if the response contains "exists": true
         if (data.exists === true) {
           // Redirect to /addEvent if "exists" is true
-          navigate('/addEvent');
+          navigate('/home');
         } else {
           // Redirect to /addInfo if "exists" is false
           navigate('/userRegistration');
@@ -108,6 +108,7 @@ function Home() {
   }, []);
 
   return (
+    
     <div >
       <div className='min-h-screen bg-sky-950 flex flex-col justify-center items-center'>
       <h1 className='text-5xl text-white font-bold'>Welcome to Folex !</h1>
