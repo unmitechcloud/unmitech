@@ -233,7 +233,7 @@ function AddEvent() {
         console.log('File uploaded successfully.');
       }
   
-      alert('Event added successfully!');
+      navigate('/home')
       setFormData({
         category: '',
         subCategory: '',
@@ -311,7 +311,7 @@ function AddEvent() {
   // If subscription is active, show the AddEvent form
   return (
     <div className='min-h-screen bg-sky-950 pb-8'>
-      <Navbar title1="Home" title2="ManageEvents" title3="SignOut" link1="/home" link2="/manageEvents" link3="/logout" />
+      <Navbar title1="Home" title2="" title3="SignOut" link1="/home" link2="/manageEvents" link3="/logout" />
       {subscribeStatus==null && 
        <div className="flex justify-center items-center h-screen bg-sky-950">
        <div className="loader border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
