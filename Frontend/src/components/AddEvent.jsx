@@ -341,7 +341,7 @@ function AddEvent() {
                 <option value="">Select Category</option>
                 <option value="Celebration">Celebration</option>
                 <option value="Notification">Notification</option>
-                <option value="Festivel">Festivel</option>
+                <option value="Festivel">Festival</option>
               </select>
             </div>
 

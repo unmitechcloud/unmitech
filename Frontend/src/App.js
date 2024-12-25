@@ -21,7 +21,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
           <Route path="/loading" element={<Root />} />
-          <Route path="/manageEvents" element={<Events />} />
+          {/* <Route path="/manageEvents" element={<Events />} /> */}
           <Route path="/userRegistration" element={<Details />} />
           <Route path="/addEvent" element={<AddEvent />} />
           <Route path="/unsubscribe" element={<UnsubscribePage />} />
